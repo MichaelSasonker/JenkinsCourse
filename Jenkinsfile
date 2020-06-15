@@ -7,12 +7,12 @@ pipeline {
         steps {
           checkout scm			
         } 
-     }
-  echo "${WORKSPACE}"	  
+     }	  
     stage('Executing Bash script') {
       steps {
         sh '''
           if [ "$LANGUAGE" = "Bash" ] || [ "$LANGUAGE" = "All" ]; then
+	    echo "${WORKSPACE}"
             cd ${WORKSPACE}/scripts/
             chmod 755 Bash_script.sh
             ./Bash_script.sh 
