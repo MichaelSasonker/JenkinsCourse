@@ -10,7 +10,7 @@ pipeline {
      }	  
     stage('Executing Bash script') {
       steps {
-	echo '${WORKSPACE}'      
+	echo ${env.WORKSPACE}      
         sh '''
           if [ "$LANGUAGE" = "Bash" ] || [ "$LANGUAGE" = "All" ]; then
             cd ${WORKSPACE}/scripts/
