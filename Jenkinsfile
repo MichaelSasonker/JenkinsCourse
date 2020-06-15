@@ -5,9 +5,10 @@ pipeline {
   stages {
     stage('Clone Sources') {
         steps {
-          checkout scm
+          checkout scm			
         } 
      }
+  echo "${WORKSPACE}"	  
     stage('Executing Bash script') {
       steps {
         sh '''
@@ -54,9 +55,9 @@ pipeline {
       stage('Creating log file') {
         steps {
           sh '''
-	    mkdir ${WORKSPACE}/logFile
-	    logFile = "${WORKSPACE}/logFile/logFile.txt"
-	    cd ${WORKSPACE}/logFile/
+	    logFile = "${WORKSPACE}/logdir/logFile.txt"
+	    mkdir -p ${WORKSPACE}/logdir
+	    cd ${WORKSPACE}/logdir/
             if [ -f "${logFile}" ]; then
                 echo "A log file is already exists"
             else
