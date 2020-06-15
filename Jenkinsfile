@@ -8,14 +8,13 @@ pipeline {
           checkout scm
         } 
      }
-    stage('Executing bash script') {
+    stage('Executing Bash script') {
       steps {
         sh '''
           if [ "$LANGUAGE" = "Bash" ] || [ "$LANGUAGE" = "All" ]; then
             cd ${WORKSPACE}/scripts/
             chmod 755 Bash_script.sh
             ./Bash_script.sh 
-	    sh 'echo "The output from the $LANGUAGE file is: " > ${WORKSPACE}/output.txt '
             ./Bash_script.sh > ${WORKSPACE}/output.txt
           else
             echo "$LANGUAGE file is selected! "
@@ -30,7 +29,6 @@ pipeline {
                cd ${WORKSPACE}/scripts/
                chmod 755 Python_script.py
                ${WORKSPACE}/scripts/Python_script.py $LANGUAGE
-               sh ' echo "The output from the $LANGUAGE file is: " > ${WORKSPACE}/output.txt '
                ${WORKSPACE}/scripts/Python_script.py $LANGUAGE > ${WORKSPACE}/output.txt
             else
                echo "$LANGUAGE file is selected! "
@@ -46,7 +44,6 @@ pipeline {
                 chmod 755 C_script.c
                 gcc C_script.c -o C.c
 		./C.c 
-                sh' echo "The output from the $LANGUAGE file is: " > ${WORKSPACE}/output.txt '
 		./C.c > ${WORKSPACE}/output.txt
               else
                 echo "$LANGUAGE file is selected! "
