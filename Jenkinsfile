@@ -42,9 +42,9 @@ pipeline {
               if [ "$LANGUAGE" = "C" ] || [ "$LANGUAGE" = "All" ]; then
                 cd ${WORKSPACE}/scripts/
                 chmod 755 C_script.c
-                gcc C_script.c -o C.c
-		./C.c 
-		./C.c > ${WORKSPACE}/output.txt
+                gcc C_script.c -o C
+		./C 
+		./C > ${WORKSPACE}/output.txt
               else
                 echo "$LANGUAGE file is selected! "
               fi
