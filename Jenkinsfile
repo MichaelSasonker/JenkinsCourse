@@ -54,9 +54,8 @@ pipeline {
       stage('Creating log file') {
         steps {
           sh '''
+	    logFile="/home/michael/logdir/logFile"
 	    mkdir -p /home/michael/logdir/
-	    logFile = "/home/michael/logdir/logFile"
-	    cd /home/michael/logdir/
             if [ -f "${logFile}" ]; then
                 echo "A log file is already exists"
             else
