@@ -1,4 +1,4 @@
-//This is a jenkins file that will pulled from the master user.
+//This is a jenkins file that will pull from the master user.
 
 pipeline {
   agent { node { label 'slave01' } } //agent any
@@ -13,9 +13,10 @@ pipeline {
         sh '''
           if [ "$LANGUAGE" = "Bash" ] || [ "$LANGUAGE" = "All" ]; then
             cd ${WORKSPACE}/scripts/
-            chmod 755 *.sh
-            ./bashscript.sh 
-            ./bashscript.sh > results
+            chmod 755 Bash_script.sh
+            ./Bash_script.sh //*.sh
+	    sh 'The output from the $LANGUAGE file is: ' > output.txt
+            ./Bash_script.sh > output.txt
           else
             echo "$LANGUAGE file is selected! "
           fi
@@ -27,10 +28,10 @@ pipeline {
             sh '''
             if [ "$LANGUAGE" = "Python" ] || [ "$LANGUAGE" = "All" ]; then
                cd ${WORKSPACE}/scripts/
-               chmod 755 *.py
-               ${WORKSPACE}/scripts/python.py //$LANGUAGE
+               chmod 755 Python_script.py
+               ${WORKSPACE}/scripts/Python_script.py $LANGUAGE
                sh 'The output from the $LANGUAGE file is: ' > output.txt
-               ${WORKSPACE}/scripts/python.py $LANGUAGE > output.txt
+               ${WORKSPACE}/scripts/Python_script.py $LANGUAGE > output.txt
             else
                echo "$LANGUAGE file is selected! "
             fi
@@ -42,31 +43,28 @@ pipeline {
             sh '''
               if [ "$LANGUAGE" = "C" ] || [ "$LANGUAGE" = "All" ]; then
                 cd ${WORKSPACE}/scripts/
-                chmod 755 *.c
-                gcc c_script.c -o c_script
-				        ./c_script 
+                chmod 755 C_script.c
+                gcc C_script.c -o C.c
+		./C.c 
                 sh 'The output from the $LANGUAGE file is: ' > output.txt
-				        ./c_script > output.txt
+		./C.c > output.txt
               else
                 echo "$LANGUAGE file is selected! "
               fi
             '''
          }
       }      
-      stage('Saving Log file') {
+      stage('Creating log file') {
         steps {
-          echo 'Saving log file process..'
           sh '''
-	          log_file="${HOME}/Documents/ProjectLog/log"
-            mkdir -p ${HOME}/Documents/ProjectLog/              
-            if [ -f "${log_file}" ]; then
-                echo "file ${log_file} exists"
+	    logFile = "${WORKSPACE}/logFile.txt"
+            mkdir -p ${WORKSPACE}/              
+            if [ -f "${logFile}" ]; then
+                echo "A log file is already exists"
             else
-	              touch ${log_file}
+	        touch ${logFile}
             fi              
-            echo "Build Number $BUILD_NUMBER" >> ${log_file}
-            cat ${WORKSPACE}/scripts/results >> ${log_file}
-	          echo "#############################" >> ${log_file}
+	    cat ${WORKSPACE}/output.txt > ${logFile}
            '''
          }
       }
