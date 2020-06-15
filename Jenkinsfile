@@ -11,7 +11,7 @@ pipeline {
     stage('Executing bash script') {
       steps {
         sh '''
-          if [ "$LANGUAGE" = "Bash" ] || [ "$LANGUAGE" = "All" ]; then
+          if [ "$LANGUAGE" = "BASH" ] || [ "$LANGUAGE" = "All" ]; then
             cd ${WORKSPACE}/scripts/
             chmod 755 Bash_script.sh
             ./Bash_script.sh //*.sh
@@ -23,7 +23,7 @@ pipeline {
         '''
        }
       }     
-      stage('Executing Python script') {
+      stage('Executing PYTHON script') {
          steps {
             sh '''
             if [ "$LANGUAGE" = "Python" ] || [ "$LANGUAGE" = "All" ]; then
