@@ -55,7 +55,7 @@ pipeline {
         steps {
           sh '''
 	    mkdir -p ${WORKSPACE}/logdir/
-	    logFile = "${WORKSPACE}/logdir/logFile.txt"
+	    logFile = "${WORKSPACE}/logdir/logFile"
 	    //mkdir -p ${WORKSPACE}/logdir/
 	    cd ${WORKSPACE}/logdir/
             if [ -f "${logFile}" ]; then
