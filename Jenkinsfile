@@ -15,7 +15,7 @@ pipeline {
             cd ${WORKSPACE}/scripts/
             chmod 755 Bash_script.sh
             ./Bash_script.sh 
-            ./Bash_script.sh > ${WORKSPACE}/output.txt
+            ./Bash_script.sh > output.txt
           else
             echo "$LANGUAGE file is selected! "
           fi
@@ -29,7 +29,7 @@ pipeline {
                cd ${WORKSPACE}/scripts/
                chmod 755 Python_script.py
                ${WORKSPACE}/scripts/Python_script.py $LANGUAGE
-               ${WORKSPACE}/scripts/Python_script.py $LANGUAGE > ${WORKSPACE}/output.txt
+               ${WORKSPACE}/scripts/Python_script.py $LANGUAGE > output.txt
             else
                echo "$LANGUAGE file is selected! "
             fi
@@ -44,7 +44,7 @@ pipeline {
                 chmod 755 C_script.c
                 gcc C_script.c -o C_script
 		./C_script 
-		./C_script > ${WORKSPACE}/output.txt
+		./C_script > output.txt
               else
                 echo "$LANGUAGE file is selected! "
               fi
