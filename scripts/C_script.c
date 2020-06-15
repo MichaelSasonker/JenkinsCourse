@@ -2,5 +2,5 @@
 
 int main() {
   printf(" This is my C script")
-  }
-return 0;
+
+  return 0; }
