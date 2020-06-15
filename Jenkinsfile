@@ -61,7 +61,7 @@ pipeline {
             else
 	        touch ${logFile}
             fi              
-	    cat ${WORKSPACE}/output.txt > ${logFile}
+	    cat output.txt > ${logFile}
            '''
          }
       }
