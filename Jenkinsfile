@@ -10,9 +10,9 @@ pipeline {
      }	  
     stage('Executing Bash script') {
       steps {
+	echo '${WORKSPACE}'      
         sh '''
           if [ "$LANGUAGE" = "Bash" ] || [ "$LANGUAGE" = "All" ]; then
-	    echo "${WORKSPACE}"
             cd ${WORKSPACE}/scripts/
             chmod 755 Bash_script.sh
             ./Bash_script.sh 
