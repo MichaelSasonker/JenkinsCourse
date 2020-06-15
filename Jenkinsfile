@@ -7,9 +7,9 @@ pipeline {
         steps {
           checkout scm			
         } 
-     }	  
+     }	 
     stage('Executing Bash script') {
-      steps {    
+      steps {      
         sh '''
           if [ "$LANGUAGE" = "Bash" ] || [ "$LANGUAGE" = "All" ]; then
             cd ${WORKSPACE}/scripts/
@@ -60,8 +60,9 @@ pipeline {
                 echo "A log file is already exists"
             else
 	        touch ${logFile}
-            fi              
+            fi
 	    cat ${WORKSPACE}/scripts/output.txt > ${logFile}
+	    date >> ${logFile}
            '''
          }
       }
