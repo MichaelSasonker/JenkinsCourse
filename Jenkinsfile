@@ -42,9 +42,9 @@ pipeline {
               if [ "$LANGUAGE" = "C" ] || [ "$LANGUAGE" = "All" ]; then
                 cd ${WORKSPACE}/scripts/
                 chmod 755 C_script.c
-                gcc C_script.c -o C
-		./C 
-		./C > ${WORKSPACE}/output.txt
+                gcc C_script.c -o C_script
+		./C_script 
+		./C_script > ${WORKSPACE}/output.txt
               else
                 echo "$LANGUAGE file is selected! "
               fi
@@ -54,9 +54,9 @@ pipeline {
       stage('Creating log file') {
         steps {
           sh '''
-	    logFile = "${WORKSPACE}/logFile.txt"
-            mkdir -p ${WORKSPACE}/
-	    cd ${WORKSPACE}/
+	    mkdir -p ${WORKSPACE}/logFile
+	    logFile = "${WORKSPACE}/logFile/logFile.txt"
+	    cd ${WORKSPACE}/logFile/
             if [ -f "${logFile}" ]; then
                 echo "A log file is already exists"
             else
