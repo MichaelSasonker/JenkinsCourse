@@ -54,7 +54,7 @@ pipeline {
       stage('Creating log file') {
         steps {
           sh '''
-	    mkdir -p ${WORKSPACE}/logFile
+	    mkdir ${WORKSPACE}/logFile
 	    logFile = "${WORKSPACE}/logFile/logFile.txt"
 	    cd ${WORKSPACE}/logFile/
             if [ -f "${logFile}" ]; then
