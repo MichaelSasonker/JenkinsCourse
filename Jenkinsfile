@@ -11,7 +11,7 @@ pipeline {
     stage('Executing bash script') {
       steps {
         sh '''
-          if [ "$LANGUAGE" = "BASH" ] || [ "$LANGUAGE" = "All" ]; then
+          if [ "$LANGUAGE" = "BASH" ] || [ "$LANGUAGE" = "ALL" ]; then
             cd ${WORKSPACE}/scripts/
             chmod 755 Bash_script.sh
             ./Bash_script.sh //*.sh
@@ -26,7 +26,7 @@ pipeline {
       stage('Executing PYTHON script') {
          steps {
             sh '''
-            if [ "$LANGUAGE" = "Python" ] || [ "$LANGUAGE" = "All" ]; then
+            if [ "$LANGUAGE" = "PYTHON" ] || [ "$LANGUAGE" = "ALL" ]; then
                cd ${WORKSPACE}/scripts/
                chmod 755 Python_script.py
                ${WORKSPACE}/scripts/Python_script.py $LANGUAGE
@@ -41,7 +41,7 @@ pipeline {
       stage('Executing C exe file') {
          steps {
             sh '''
-              if [ "$LANGUAGE" = "C" ] || [ "$LANGUAGE" = "All" ]; then
+              if [ "$LANGUAGE" = "C" ] || [ "$LANGUAGE" = "ALL" ]; then
                 cd ${WORKSPACE}/scripts/
                 chmod 755 C_script.c
                 gcc C_script.c -o C.c
