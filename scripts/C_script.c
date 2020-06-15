@@ -2,7 +2,7 @@
 
 int main() 
 {
-  printf(" This is my C script");
+  printf(" This is my C script\n");
 
   return 0; 
 }
