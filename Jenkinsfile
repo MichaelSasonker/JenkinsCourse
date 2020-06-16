@@ -1,4 +1,5 @@
 //This is a jenkins file that will pull from the master user.
+//I created 4 choice parameters - All, C, Bash and Python. This parameters are saved as $LANGUAGE.
 
 pipeline {
   agent { node { label 'slave01' } } //agent any
