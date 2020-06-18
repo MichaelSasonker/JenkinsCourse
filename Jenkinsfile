@@ -56,7 +56,7 @@ pipeline {
         steps {
           sh '''
 	    logFile="${HOME}/logdir/logFile"
-	    mkdir -p ${HOOME}/logdir/
+	    mkdir -p ${HOME}/logdir/
             if [ -f "${logFile}" ]; then
                 echo "A log file is already exists"
             else
